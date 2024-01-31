@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  mynotebook_server:
+    build: .
+    image: mynotebook
+    container_name: mynotebook_server
+    ports:
+      - "80:8080"
+    links:
+      - mysql_server
+    environment:
+      MYSQL_HOST: mysql_server
+      MYSQL_PORT: 3306
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 123456
+      MYSQL_DB: mynotebook_db
+    volumes:
+      - opt/mynotebook_data:/opt/mynotebook/data
+    depends_on:
+      mysql_server:
+        condition: service_healthy
+
+
+  mysql_server:
+    image: mysql
+    container_name: mysql_server
+    volumes:
+      - /opt/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: mynotebook_db
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      timeout: 20s
+      retries: 10

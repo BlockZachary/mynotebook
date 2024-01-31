@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    zachary的记事本 - 图片管理
+{% endblock %}
+
+{% block content %}
+    <div class="container-xl">
+        <form method="POST" class="form-signin" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <h1 class="h3 mb-3 font-weight-normal">
+                上传图片
+            </h1>
+            <br>
+            {{ form.image.label }}
+            {{ form.image(class="form-control") }}
+
+            {{ form.submit(class="btn btn-lg btn-primary btn-block") }}
+        </form>
+        <hr>
+
+        <div class="row">
+            {% if image_filenames %}
+                {% for image_filename in image_filenames %}
+                    <div class="col-md-3">
+                        <b>/image/{{ image_filename }}</b>
+                        <img src="/image/{{ image_filename }}" alt=""
+                             class="img-thumbnail my-2" style="width: 300px; height: 300px"/>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

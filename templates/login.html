@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    zachary的记事本 - 登录
+{% endblock %}
+
+{% block content %}
+    <div class="container-xl">
+        <form method="POST" class="form-signin">
+            {{ form.hidden_tag() }}
+            <h1 class="h3 mb-3 font-weight-normal">
+                记事本管理员登录
+            </h1>
+            <br>
+            {{ form.account.label }}
+            {{ form.account(class="form-control", placeholder="请输入账号") }}
+
+            {{ form.password.label }}
+            {{ form.password(class="form-control", placeholder="请输入密码") }}
+            <br>
+            {{ form.submit(class="btn btn-lg btn-primary btn-block") }}
+        </form>
+
+    </div>
+{% endblock %}

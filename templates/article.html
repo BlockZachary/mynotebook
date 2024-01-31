@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    zachary的记事本 - {{ article.title }}
+{% endblock %}
+
+{% block content %}
+
+    <textarea id="article_content" style="display: none">{{ article.content }}</textarea>
+    <div class="container-xl">
+        <h4>
+            <p class="text-center" style="margin-top: 20px;">{{ article.title }}</p>
+        </h4>
+        <p class="text-center" style="margin-top: 10px;">发布于：{{ article.create_time }}
+            更新于：{{ article.update_time }}</p>
+        <p id="article_viewer"></p>
+    </div>
+
+    <script src="/static/js/article.js">
+
+    </script>
+{% endblock %}
