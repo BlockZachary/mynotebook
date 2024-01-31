@@ -15,7 +15,7 @@ services:
       MYSQL_PASSWORD: 123456
       MYSQL_DB: mynotebook_db
     volumes:
-      - opt/mynotebook_data:/opt/mynotebook/data
+      - /opt/mynotebook_data:/opt/mynotebook/data
     depends_on:
       mysql_server:
         condition: service_healthy
